@@ -9,20 +9,26 @@ const addLogradouro = controllerWrapper(async (req, res, next) => {
 
 const addUser = controllerWrapper(async (req, res, next) => {
   console.log(req.body);
-  const user = await Services.addUser(req.body);
-  return res.status(201).json(user);
+  const cliente = await Services.addUser(req.body);
+  return res.status(201).json(cliente);
 });
 
 const addService = controllerWrapper(async (req, res, next) => {
   console.log(req.body);
-  const service = await Services.addService(req.body);
-  return res.status(201).json(service);
+  const servico = await Services.addService(req.body);
+  return res.status(201).json(servico);
 });
 
-const getWork = controllerWrapper(async (req, res, next) => {
-  console.log(req.body.userId);
-  const service = await Services.getWork(req.body.userId);
-  return res.status(200).json(service);
+const addAtendimento = controllerWrapper(async (req, res, next) => {
+  console.log(req.body);
+  const atendimento = await Services.addAtendimento(req.body);
+  return res.status(201).json(atendimento);
 });
 
-module.exports = { addLogradouro, addUser, addService, getWork };
+const getConfirmationCard = controllerWrapper(async (req, res, next) => {
+  console.log(req.body.clienteId);
+  const confirmar = await Services.getConfirmationCard(req.body.clienteId);
+  return res.status(200).json(confirmar);
+});
+
+module.exports = { addLogradouro, addUser, addService, addAtendimento, getConfirmationCard };

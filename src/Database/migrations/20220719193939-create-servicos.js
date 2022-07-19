@@ -2,29 +2,24 @@
 module.exports = {
   async up(queryInterface, Sequelize) {
     await queryInterface.createTable('serviços', {
-      userId: {
+      id: {
         allowNull: false,
         primaryKey: true,
-        type: Sequelize.UUID,
-        references: {
-          model: 'clientes',
-          key: 'id',
-        },
-        onUpdate: 'CASCADE',
-        onDelete: 'CASCADE',
+        type: Sequelize.UUID
       },
-      descrição: {
-        type: Sequelize.STRING,
-        allowNull: false,
+      serviço: {
+        type: Sequelize.STRING
       },
-      preço: {
-        type: Sequelize.FLOAT
-      },
-      data: {
+      duraçãoMédia: {
         allowNull: false,
         type: Sequelize.STRING
       },
-    });
+    },
+      {
+        timestamps: false,
+        tableName: 'serviços'
+      }
+    );
   },
   async down(queryInterface, Sequelize) {
     await queryInterface.dropTable('serviços');

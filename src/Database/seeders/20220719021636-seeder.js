@@ -1,7 +1,7 @@
 "use strict";
 const logradouros = require("./logradouros.json");
 const clientes = require("./clientes.json");
-const servicos = require("./servicos.json");
+const atendimentos = require("./atentimentos.json");
 const uuid = require("uuid");
 
 const enderecos = logradouros.map((ele) => {
@@ -17,9 +17,9 @@ const cliente = clientes.map((client, index) => {
   return client;
 });
 
-const tasks = servicos.map((service, index) => {
-  service.userId = cliente[index].id;
-  return service;
+const tasks = atendimentos.map((atendences, index) => {
+  atendences.userId = cliente[index].id;
+  return atendences;
 });
 
 module.exports = {

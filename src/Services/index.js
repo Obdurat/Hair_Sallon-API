@@ -21,25 +21,25 @@ const addService = async (body) => {
   return newService;
 };
 
-const getWork = async (userId) => {
-  console.log(userId);
-  const service = await Models.serviços.findOne({
-    where: { userId },
-    attributes: { exclude: ["userId"] },
+
+const addAtendimento = async (body) => {
+  console.log(body);
+  const newAtendimento = await Models.atendimentos.build(body);
+  await newAtendimento.save();
+  return newAtendimento;
+}
+
+const getConfirmationCard = async (clienteId) => {
+  console.log(clienteId);
+  const atendimento = await Models.clientes.findOne({
+    where: { id: clienteId },
     include: [
       {
-        model: Models.clientes,
-        attributes: ["nome", "telefone"],
-        include: [
-          {
-            model: Models.logradouro,
-            attributes: ["rua", "bairro", "cidade", "complemento", "cep"],
-          },
-        ],
+        model: Models.logradouro,
       },
     ],
   });
-  return service;
+  return atendimento;
 };
 
-module.exports = { addLogradouro, addUser, addService, getWork };
+module.exports = { addLogradouro, addUser, addService, addAtendimento, getConfirmationCard };

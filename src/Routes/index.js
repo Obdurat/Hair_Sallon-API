@@ -6,6 +6,8 @@ Router.route("/logradouro").post(Controllers.addLogradouro);
 
 Router.route("/cliente").post(Controllers.addUser);
 
-Router.route("/servico").post(Controllers.addService).get(Controllers.getWork);
+Router.route("/servico").post(Controllers.addService);
+
+Router.route("/atendimento").post(Controllers.addAtendimento).get(Controllers.getConfirmationCard);
 
 module.exports = Router;

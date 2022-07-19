@@ -24,8 +24,8 @@ module.exports = (sequelize, DataTypes) => {
     telefone: {
       type: DataTypes.STRING,
     },
-    published: DataTypes.DATE,
-    updated: DataTypes.DATE,
+    criado: DataTypes.DATE,
+    atualizado: DataTypes.DATE,
   }, {
     sequelize,
     modelName: 'clientes',
