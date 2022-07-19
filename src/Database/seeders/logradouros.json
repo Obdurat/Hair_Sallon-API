@@ -1,0 +1,72 @@
+[
+  {
+    "bairro": "São Francisco",
+    "rua": "Hermina Greens Suite",
+    "cidade": "Anchorage",
+    "cep": "29318-756",
+    "complemento": "Galeria 9"
+  },
+  {
+    "bairro": "Planalto",
+    "rua": "Primeiro de Maio",
+    "cidade": "Serra",
+    "cep": "29225-449",
+    "complemento": "Lote 6"
+  },
+  {
+    "bairro": "Santo Antônio",
+    "rua": "Santa Luzia",
+    "cidade": "Mossoró",
+    "cep": "49515-235",
+    "complemento": "Portão 7"
+  },
+  {
+    "bairro": "São José",
+    "rua": "Projetada",
+    "cidade": "Balneário Camboriú",
+    "cep": "26171-699",
+    "complemento": "Andar 1"
+  },
+  {
+    "bairro": "Bela Vista",
+    "rua": "Dezesseis",
+    "cidade": "Embu das Artes",
+    "cep": "78292-128",
+    "complemento": "Galpão 4"
+  },
+  {
+    "bairro": "Boa Vista",
+    "rua": "Santo Antônio",
+    "cidade": "Itapipoca",
+    "cep": "66357-425",
+    "complemento": "Casa 6"
+  },
+  {
+    "bairro": "São Francisco",
+    "rua": "Projetada",
+    "cidade": "Vitória",
+    "cep": "78151-859",
+    "complemento": "Anexo 9"
+  },
+  {
+    "bairro": "Vila Nova",
+    "rua": "Vinte",
+    "cidade": "Nossa Senhora do Socorro",
+    "cep": "65969-025",
+    "complemento": "Fazenda 10"
+  },
+  {
+    "bairro": "Industrial",
+    "rua": "Duque de Caxias",
+    "cidade": "Arapiraca",
+    "cep": "49713-468",
+    "complemento": "Galpão 7"
+  },
+  {
+    "bairro": "São Cristóvão",
+    "rua": "Sergipe",
+    "cidade": "Itumbiara",
+    "cep": "79250-938",
+    "complemento": "Quadra 3"
+  }
+]
