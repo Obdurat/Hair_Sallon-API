@@ -1,52 +1,46 @@
 [
   {
-    "descrição": "Escova Progressiva",
-    "preço": "350.50",
-    "data": "13/12/2022"
-  },
+    "serviço": "Escova Progressiva",
+    "duraçãoMédia": "2 horas"
+  }, 
   {
-    "descrição": "Corte Feminino",
-    "preço": "349.50",
-    "data": "31/10/2022"
-  },
+    "serviço": "Corte",
+    "duraçãoMédia": "2 horas"
+  }, 
   {
-    "descrição": "Escova Definitiva",
-    "preço": "300.00",
-    "data": "12/12/2022"
-  },
+    "serviço": "Corte Feminino",
+    "duraçãoMédia": "2 horas"
+  }, 
   {
-    "descrição": "Hidratação",
-    "preço": "500.50",
-    "data": "08/04/2022"
-  },
+    "serviço": "Corte Masculino",
+    "duraçãoMédia": "2 horas"
+  }, 
   {
-    "descrição": "Reconstrução",
-    "preço": "80.50",
-    "data": "13/08/2022"
-  },
+    "serviço": "Escova Permanente",
+    "duraçãoMédia": "2 horas"
+  }, 
   {
-    "descrição": "Mega Hair",
-    "preço": "90.50",
-    "data": "30/08/2022"
-  },
+    "serviço": "Escova",
+    "duraçãoMédia": "2 horas"
+  }, 
   {
-    "descrição": "Aplique",
-    "preço": "110.50",
-    "data": "13/05/2022"
-  },
+    "serviço": "Chapinha",
+    "duraçãoMédia": "2 horas"
+  }, 
   {
-    "descrição": "Corte Infantil",
-    "preço": "456.50",
-    "data": "16/07/2022"
-  },
+    "serviço": "Luzes",
+    "duraçãoMédia": "2 horas"
+  }, 
   {
-    "descrição": "Corte Masculino",
-    "preço": "615.50",
-    "data": "22/09/2022"
-  },
+    "serviço": "Pontas",
+    "duraçãoMédia": "2 horas"
+  }, 
   {
-    "descrição": "Escova Tradicional",
-    "preço": "165.50",
-    "data": "27/10/2022"
+    "serviço": "Mega Hair",
+    "duraçãoMédia": "2 horas"
+  }, 
+  {
+    "serviço": "Hidratação",
+    "duraçãoMédia": "2 horas"
   }
 ]

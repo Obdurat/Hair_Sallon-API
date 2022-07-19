@@ -1,7 +1,8 @@
 "use strict";
 const logradouros = require("./logradouros.json");
 const clientes = require("./clientes.json");
-const atendimentos = require("./atentimentos.json");
+const atendimentos = require("./atendimentos.json");
+const servicos = require("./servicos.json");
 const uuid = require("uuid");
 
 const enderecos = logradouros.map((ele) => {
@@ -17,9 +18,15 @@ const cliente = clientes.map((client, index) => {
   return client;
 });
 
-const tasks = atendimentos.map((atendences, index) => {
-  atendences.userId = cliente[index].id;
-  return atendences;
+const tasks = servicos.map((task) => {
+  task.id = uuid.v1();
+  return task;
+});
+
+const atendi = atendimentos.map((atendence, index) => {
+  atendence.clienteId = cliente[index].id;
+  atendence.serviçoId = tasks[index].id;
+  return atendence;
 });
 
 module.exports = {
@@ -27,13 +34,15 @@ module.exports = {
     const logradourosSeed = await queryInterface.bulkInsert("logradouros", enderecos, { returning: true });
     const clienteSeed = await queryInterface.bulkInsert("clientes", cliente, { returning: true });
     const tasksSeed = await queryInterface.bulkInsert("serviços", tasks, { returning: true });
-    return ({ logradourosSeed, clienteSeed, tasksSeed });
+    const atendimentosSeed = await queryInterface.bulkInsert("atendimentos", atendi, { returning: true });
+    return ({ logradourosSeed, clienteSeed, tasksSeed, atendimentosSeed });
   },
 
   async down(queryInterface, Sequelize) {
     await queryInterface.bulkDelete("logradouros", null, {});
     await queryInterface.bulkDelete("clientes", null, {});
     await queryInterface.bulkDelete("serviços", null, {});
+    await queryInterface.bulkDelete("atendimentos", null, {});
     return null;
   },
 };
