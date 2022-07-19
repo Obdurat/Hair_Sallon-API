@@ -21,25 +21,36 @@ const addService = async (body) => {
   return newService;
 };
 
-
 const addAtendimento = async (body) => {
   console.log(body);
   const newAtendimento = await Models.atendimentos.build(body);
   await newAtendimento.save();
   return newAtendimento;
-}
+};
 
 const getConfirmationCard = async (clienteId) => {
-  console.log(clienteId);
   const atendimento = await Models.clientes.findOne({
     where: { id: clienteId },
+    attributes: ["nome", "telefone"],
     include: [
       {
+        model: Models.serviços,
+        attributes: ["serviço", "duraçãoMédia"],
+        through: { model: Models.atendimentos, attributes: ["data", "preço"] },
+      },
+      {
         model: Models.logradouro,
+        attributes: ["bairro", "rua", "cidade", "cep", "complemento"],
       },
     ],
   });
   return atendimento;
 };
 
-module.exports = { addLogradouro, addUser, addService, addAtendimento, getConfirmationCard };
+module.exports = {
+  addLogradouro,
+  addUser,
+  addService,
+  addAtendimento,
+  getConfirmationCard,
+};

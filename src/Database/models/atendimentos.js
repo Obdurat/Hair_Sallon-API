@@ -1,7 +1,6 @@
 'use strict';
-const {
-  Model
-} = require('sequelize');
+const { Model } = require('sequelize');
+
 module.exports = (sequelize, DataTypes) => {
   class atendimentos extends Model {
     /**
@@ -13,12 +12,10 @@ module.exports = (sequelize, DataTypes) => {
       models.clientes.belongsToMany(models.serviços, { 
         through: models.atendimentos,
         foreignKey: 'clienteId', 
-        // otherKey: 'serviçoId',
       });
      models.serviços.belongsToMany(models.clientes, {
         through: models.atendimentos,
         foreignKey: 'serviçoId',
-        // otherKey: 'clienteId',
       });
     }
   }
@@ -54,7 +51,6 @@ module.exports = (sequelize, DataTypes) => {
     sequelize,
     modelName: 'atendimentos',
     timestamps: false,
-    onDelete: 'cascade',
   }
   )
 
