@@ -20,12 +20,20 @@ module.exports = (sequelize, DataTypes) => {
       primaryKey: true,
       allowNull: false,
     },
+    nome: DataTypes.STRING,
     telefone: {
       type: DataTypes.STRING,
     },
+    published: DataTypes.DATE,
+    updated: DataTypes.DATE,
   }, {
     sequelize,
     modelName: 'clientes',
+    timestamps: true,
+    createdAt: 'criado',
+    updatedAt: 'atualizado',
+    onDelete: 'cascade', 
+
   });
   return clientes;
 };

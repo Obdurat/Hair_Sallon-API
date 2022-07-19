@@ -20,14 +20,10 @@ module.exports = {
       preço: {
         type: Sequelize.FLOAT
       },
-      createdAt: {
+      data: {
         allowNull: false,
-        type: Sequelize.DATE
+        type: Sequelize.STRING
       },
-      updatedAt: {
-        allowNull: false,
-        type: Sequelize.DATE
-      }
     });
   },
   async down(queryInterface, Sequelize) {

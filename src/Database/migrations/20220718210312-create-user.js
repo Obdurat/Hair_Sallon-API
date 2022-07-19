@@ -9,6 +9,10 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.UUID
       },
+      nome: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
       endereço: {
         type: Sequelize.UUID,
         allowNull: false,
@@ -23,7 +27,15 @@ module.exports = {
         allowNull: false,
         type: Sequelize.STRING
       },
-    }, { timestamps: false });
+      criado: {
+        allowNull: false,
+        type: Sequelize.DATE,
+      },
+      atualizado: {
+        allowNull: false,
+        type: Sequelize.DATE,
+      },
+    }, { timestamps: true });
   },
   async down(queryInterface, Sequelize) {
     await queryInterface.dropTable('clientes');

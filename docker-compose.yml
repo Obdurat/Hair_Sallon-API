@@ -1,12 +1,14 @@
-db:
-  # Constrói a partir do Dockerfile na pasta Database
-    build: ./src/Database/Docker
-    container_name: HairSallon_DB
-    restart: always
-    tty: true
-    stdin_open: true
-    ports:
-      - 3306:3306
-    environment:
-      MYSQL_ROOT_PASSWORD: password
-      # Default network para os containers se comunicarem
+version: '3'
+services:
+  data:
+    # Constrói a partir do Dockerfile na pasta Database
+      build: ./src/Database/Docker
+      container_name: HairSallon_DB
+      restart: always
+      tty: true
+      stdin_open: true
+      ports:
+        - 3306:3306
+      environment:
+        MYSQL_ROOT_PASSWORD: password
+        # Default network para os containers se comunicarem

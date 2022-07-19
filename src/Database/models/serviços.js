@@ -10,16 +10,28 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // define association here
+      models.serviços.belongsTo(models.clientes, { foreignKey: 'userId'});
     }
   }
   serviços.init({
+    userId: {
+      type: DataTypes.UUID,
+      primaryKey: true,
+      allowNull: false,
+      references: {
+        model: 'clientes',
+        key: 'id',
+      },
+      onUpdate: 'CASCADE',
+      onDelete: 'CASCADE',
+    },
     descrição: DataTypes.STRING,
-    data: DataTypes.DATE,
+    data: DataTypes.STRING,
     preço: DataTypes.FLOAT
   }, {
     sequelize,
     modelName: 'serviços',
+    timestamps: false,
   });
   return serviços;
 };
