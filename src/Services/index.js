@@ -79,13 +79,28 @@ const getConfirmationCard = async (clienteId) => {
 
 
 const getClientsServicesForTime = async (clienteId, startDate, endDate) => {
-  console.log('chegou o clientão id', clienteId);
   const query = fs.readFileSync('./src/Database/queries/clientesServicesTime.sql', 'utf8');
   const [atendimento, _metaData] = await Models.sequelize.query(query, {
       replacements: [clienteId, startDate, endDate],
     })
   return atendimento;
 };
+
+const servicesOnTime = async ( startDate, endDate) => {
+  const query = fs.readFileSync('./src/Database/queries/servicesOnTime.sql', 'utf8');
+  const [atendimento, _metaData] = await Models.sequelize.query(query, {
+      replacements: [startDate, endDate],
+    })
+  return atendimento;
+}
+
+const getBalance = async (startDate, endDate) => {
+  const query = fs.readFileSync('./src/Database/queries/balance.sql', 'utf8');
+  const [balance, _metaData] = await Models.sequelize.query(query, {
+      replacements: [startDate, endDate],
+    })
+  return balance;
+}
 
 
 module.exports = {
@@ -95,4 +110,6 @@ module.exports = {
   addAtendimento,
   getConfirmationCard,
   getClientsServicesForTime,
+  servicesOnTime,
+  getBalance,
 };

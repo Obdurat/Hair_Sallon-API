@@ -38,10 +38,23 @@ const getClientsServicesForTime = controllerWrapper(async (req, res, next) => {
   return res.status(200).json(servicesOnTime);
 });
 
+const servicesOnTime = controllerWrapper(async (req, res, next) => {
+  console.log(req.body.startDate);
+  const servicesOnTime = await Services.servicesOnTime(req.body.startDate, req.body.endDate);
+  return res.status(200).json(servicesOnTime);
+});
+
+const getBalance = controllerWrapper(async (req, res, next) => {
+  const balance = await Services.getBalance(req.body.startDate, req.body.endDate);
+  return res.status(200).json(balance);
+});
 
 module.exports = { addLogradouro, 
   addUser, 
   addService, 
   addAtendimento, 
   getConfirmationCard,
-  getClientsServicesForTime, };
+  getClientsServicesForTime,
+  servicesOnTime, 
+  getBalance,
+  };
