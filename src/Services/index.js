@@ -1,4 +1,33 @@
+const { Op } = require("sequelize");
 const Models = require("../Database/models");
+const fs = require('fs');
+// const Sequelize = require("sequelize");
+// const multer  = require('multer');
+
+// const upload = multer({
+//   storage: multer.diskStorage({
+//     destination: (req, file, cb) => {
+//       cb(null, 'uploads/');
+//     },
+//     filename: (req, file, cb) => {
+//       cb(null, file.originalname);
+//     }
+//   }),
+//   fileFilter: (req, file, cb) => {
+//     if (
+//       file.mimetype === 'image/png' ||
+//       file.mimetype === 'image/jpg' ||
+//       file.mimetype === 'image/jpeg'
+//     ) {
+//       cb(null, true);
+//     } else {
+//       cb(null, false);
+//       return cb(new Error('Only image are allowed'));
+//     }
+//   }
+// }).single('image');
+
+
 
 const addLogradouro = async (body) => {
   console.log(body);
@@ -36,7 +65,8 @@ const getConfirmationCard = async (clienteId) => {
       {
         model: Models.serviços,
         attributes: ["serviço", "duraçãoMédia"],
-        through: { model: Models.atendimentos, attributes: ["data", "preço"] },
+        through: { model: Models.atendimentos, attributes: ["data", "preço"], order: [["data", "DESC"]] },
+        
       },
       {
         model: Models.logradouro,
@@ -47,10 +77,22 @@ const getConfirmationCard = async (clienteId) => {
   return atendimento;
 };
 
+
+const getClientsServicesForTime = async (clienteId, startDate, endDate) => {
+  console.log('chegou o clientão id', clienteId);
+  const query = fs.readFileSync('./src/Database/queries/clientesServicesTime.sql', 'utf8');
+  const [atendimento, _metaData] = await Models.sequelize.query(query, {
+      replacements: [clienteId, startDate, endDate],
+    })
+  return atendimento;
+};
+
+
 module.exports = {
   addLogradouro,
   addUser,
   addService,
   addAtendimento,
   getConfirmationCard,
+  getClientsServicesForTime,
 };

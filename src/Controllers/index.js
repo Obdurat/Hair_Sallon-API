@@ -31,4 +31,17 @@ const getConfirmationCard = controllerWrapper(async (req, res, next) => {
   return res.status(200).json(confirmar);
 });
 
-module.exports = { addLogradouro, addUser, addService, addAtendimento, getConfirmationCard };
+const getClientsServicesForTime = controllerWrapper(async (req, res, next) => {
+  console.log(req.body.clienteId);
+  console.log(req.body.startDate);
+  const servicesOnTime = await Services.getClientsServicesForTime(req.body.clienteId, req.body.startDate, req.body.endDate);
+  return res.status(200).json(servicesOnTime);
+});
+
+
+module.exports = { addLogradouro, 
+  addUser, 
+  addService, 
+  addAtendimento, 
+  getConfirmationCard,
+  getClientsServicesForTime, };
