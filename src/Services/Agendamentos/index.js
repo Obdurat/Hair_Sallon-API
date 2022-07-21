@@ -7,15 +7,16 @@ const addAtendimento = async (body, t) => {
   return newAtendimento;
 };
 
-const deleteAtendimento = async (clienteId, serviceId) => {
+const deleteAtendimento = async (clienteId, serviçoId) => {
   // O QUE ACONTECE SE O CLIENTE TIVER DOIS AGENDAMENTOS PARA O MESMO SERVIÇO ????
+  console.log(clienteId, serviçoId);
   const atendimento = await Models.atendimentos.findOne({
-    where: { clienteId, serviceId },
+    where: { clienteId, serviçoId },
   });
   console.log(atendimento);
   if (!atendimento) throw new CustomError("Atendimento não Encontrado", 404);
   atendimento.destroy();
-  return atendimento;
+  return {atendimento, message: "Atendimento deletado com sucesso"};
 };
 
 const updateAtendimento = async (body, clienteId, serviceId) => {
