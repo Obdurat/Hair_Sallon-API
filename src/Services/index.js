@@ -98,7 +98,7 @@ const getAttendenceConfirmation = async (clienteId) => {
     replacements: [clienteId],
   });
   return atendimento;
-}
+};
 
 
 const getClientsServicesForTime = async (clienteId, startDate, endDate) => {
@@ -140,20 +140,20 @@ const registerCompleted = async ({logradouro, cliente, atendimento}) => {
 };
 
 module.exports = {
-  addLogradouro,
-  addUser,
-  addService,
-  addAtendimento,
-  getAllServiceClient,
-  getClientsServicesForTime,
-  servicesOnTime,
-  getBalance,
-  getAttendenceConfirmation,
-  registerCompleted,
-  getAllUsers,
-  patchUser,
-  patchService,
-  deleteService,
-  deleteAtendimento,
-  updateAtendimento
+  addLogradouro, // Cliente
+  addUser, // Cliente
+  getAttendenceConfirmation, // Cliente
+  registerCompleted, // Cliente
+  getAllUsers, // Cliente
+  patchUser, // Cliente
+  getAllServiceClient, // Cliente
+  getClientsServicesForTime, // Cliente
+  addService, // Serviços
+  patchService, // Serviços
+  deleteService, // Serviços
+  servicesOnTime, // Serviços
+  addAtendimento, // Agendamentos
+  deleteAtendimento, // Agendamentos
+  updateAtendimento, // Agendamentos
+  getBalance
 };

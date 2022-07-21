@@ -109,20 +109,20 @@ const updateAtendimento = controllerWrapper(async (req, res, next) => {
 });
 
 module.exports = {
-  addLogradouro,
-  addUser,
-  addService,
-  addAtendimento,
-  getAllServiceClient,
-  getClientsServicesForTime,
-  servicesOnTime,
-  getBalance,
-  getAttendenceConfirmation,
-  registerCompleted,
-  getAllUsers,
-  patchUser,
-  patchService,
-  deleteService,
-  deleteAtendimento,
-  updateAtendimento
+  addLogradouro, // Cliente
+  addUser, // Cliente
+  getAllServiceClient, // Cliente
+  getClientsServicesForTime, // Cliente
+  getAttendenceConfirmation, // Cliente
+  registerCompleted, // Cliente
+  getAllUsers, // Cliente
+  patchUser, // Cliente
+  addService, // Serviços
+  servicesOnTime, // Serviços
+  patchService, // Serviços
+  deleteService, // Serviços
+  addAtendimento, // Agendamentos
+  getBalance, 
+  deleteAtendimento, // Agendamentos
+  updateAtendimento // Agendamentos
 };
