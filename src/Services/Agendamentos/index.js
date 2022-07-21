@@ -24,3 +24,10 @@ const updateAtendimento = async (body, clienteId, serviceId) => {
   await atendimento.update(body);
   return atendimento;
 };
+
+
+module.exports = {
+  addAtendimento,
+  deleteAtendimento,
+  updateAtendimento,
+}
