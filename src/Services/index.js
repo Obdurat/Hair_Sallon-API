@@ -20,9 +20,10 @@ const getAllUsers = async () => {
 };
 
 const patchUser = async (body) => {
-  const user = await Models.clientes.findOne({ where: { id: body.id } });
+  const user = await Models.clientes.findOne({  where: { id: body.id } });
   if (!user) throw new CustomError("Cliente não encontrado",404);
-  const logradouro = await Models.logradouro.findOne({ where: { id: body.endereço } });
+  // const logradouro = await Models.logradouro.findOne({ where: { id: body.endereço } });
+  const logradouro = await Models.logradouro.findOne({ where: { id: user.endereço } });
   if (body.logradouro) {
     logradouro.update(body.logradouro)
     logradouro.save();
