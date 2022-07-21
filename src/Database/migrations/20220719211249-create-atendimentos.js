@@ -29,8 +29,16 @@ module.exports = {
         allowNull: false,
         type: Sequelize.DATE
       },
+      criadoEm: {
+        allowNull: false,
+        type: Sequelize.DATE,
+      },
+      atualizadoEm: {
+        allowNull: false,
+        type: Sequelize.DATE,
+      }
     },
-    { timestamps: false }
+    { timestamps: true }
     );
   },
   async down(queryInterface, Sequelize) {

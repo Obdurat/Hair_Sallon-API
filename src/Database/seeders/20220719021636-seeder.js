@@ -26,6 +26,8 @@ const tasks = servicos.map((task) => {
 const atendi = atendimentos.map((atendence, index) => {
   atendence.clienteId = cliente[index].id;
   atendence.serviçoId = tasks[index].id;
+  atendence.criadoEm = new Date();
+  atendence.atualizadoEm = new Date();
   return atendence;
 });
 

@@ -25,10 +25,10 @@ const addAtendimento = controllerWrapper(async (req, res, next) => {
   return res.status(201).json(atendimento);
 });
 
-const getConfirmationCard = controllerWrapper(async (req, res, next) => {
+const getAllServiceClient = controllerWrapper(async (req, res, next) => {
   console.log(req.body.clienteId);
-  const confirmar = await Services.getConfirmationCard(req.body.clienteId);
-  return res.status(200).json(confirmar);
+  const todosServicos = await Services.getAllServiceClient(req.body.clienteId);
+  return res.status(200).json(todosServicos);
 });
 
 const getClientsServicesForTime = controllerWrapper(async (req, res, next) => {
@@ -45,16 +45,28 @@ const servicesOnTime = controllerWrapper(async (req, res, next) => {
 });
 
 const getBalance = controllerWrapper(async (req, res, next) => {
-  const balance = await Services.getBalance(req.body.startDate, req.body.endDate);
+  const [balance] = await Services.getBalance(req.body.startDate, req.body.endDate);
   return res.status(200).json(balance);
+});
+
+const getAttendenceConfirmation = controllerWrapper(async (req, res, next) => {
+  const [attendanceConfirmation] = await Services.getAttendenceConfirmation(req.body.clienteId);
+  return res.status(200).json(attendanceConfirmation);
+});
+
+const registerCompleted = controllerWrapper(async (req, res, next) => {
+  const attendanceConfirmation = await Services.registerCompleted(req.body, next);
+  return res.status(200).json(attendanceConfirmation);
 });
 
 module.exports = { addLogradouro, 
   addUser, 
   addService, 
   addAtendimento, 
-  getConfirmationCard,
+  getAllServiceClient,
   getClientsServicesForTime,
   servicesOnTime, 
   getBalance,
+  getAttendenceConfirmation,
+  registerCompleted,
   };

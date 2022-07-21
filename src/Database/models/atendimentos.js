@@ -46,11 +46,15 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.FLOAT,
       allowNull: false,
     },
+    criado: DataTypes.DATE,
+    atualizado: DataTypes.DATE,
   }, 
   { 
+    createdAt: 'criadoEm',
+    updatedAt: 'atualizadoEm',
     sequelize,
     modelName: 'atendimentos',
-    timestamps: false,
+    timestamps: true,
   }
   )
 

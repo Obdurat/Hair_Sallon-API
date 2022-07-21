@@ -1,45 +1,18 @@
-const { Op } = require("sequelize");
 const Models = require("../Database/models");
 const fs = require('fs');
-// const Sequelize = require("sequelize");
-// const multer  = require('multer');
-
-// const upload = multer({
-//   storage: multer.diskStorage({
-//     destination: (req, file, cb) => {
-//       cb(null, 'uploads/');
-//     },
-//     filename: (req, file, cb) => {
-//       cb(null, file.originalname);
-//     }
-//   }),
-//   fileFilter: (req, file, cb) => {
-//     if (
-//       file.mimetype === 'image/png' ||
-//       file.mimetype === 'image/jpg' ||
-//       file.mimetype === 'image/jpeg'
-//     ) {
-//       cb(null, true);
-//     } else {
-//       cb(null, false);
-//       return cb(new Error('Only image are allowed'));
-//     }
-//   }
-// }).single('image');
 
 
-
-const addLogradouro = async (body) => {
+const addLogradouro = async (body, t) => {
   console.log(body);
   const newAdress = await Models.logradouro.build(body);
-  await newAdress.save();
+  await newAdress.save({transaction: t});
   return newAdress;
 };
 
-const addUser = async (body) => {
+const addUser = async (body, t) => {
   console.log(body);
   const newUser = await Models.clientes.build(body);
-  await newUser.save();
+  await newUser.save({transaction: t});
   return newUser;
 };
 
@@ -50,14 +23,14 @@ const addService = async (body) => {
   return newService;
 };
 
-const addAtendimento = async (body) => {
+const addAtendimento = async (body, t) => {
   console.log(body);
   const newAtendimento = await Models.atendimentos.build(body);
-  await newAtendimento.save();
+  await newAtendimento.save({transaction: t});
   return newAtendimento;
 };
 
-const getConfirmationCard = async (clienteId) => {
+const getAllServiceClient = async (clienteId) => {
   const atendimento = await Models.clientes.findOne({
     where: { id: clienteId },
     attributes: ["nome", "telefone"],
@@ -65,7 +38,7 @@ const getConfirmationCard = async (clienteId) => {
       {
         model: Models.serviços,
         attributes: ["serviço", "duraçãoMédia"],
-        through: { model: Models.atendimentos, attributes: ["data", "preço"], order: [["data", "DESC"]] },
+        through: { model: Models.atendimentos, attributes: ["data", "preço"] },
         
       },
       {
@@ -76,6 +49,14 @@ const getConfirmationCard = async (clienteId) => {
   });
   return atendimento;
 };
+
+const getAttendenceConfirmation = async (clienteId) => {
+  const query = fs.readFileSync('./src/Database/queries/attendenceConfirmation.sql', 'utf8');
+  const [atendimento, _metaData] = await Models.sequelize.query(query, {
+    replacements: [clienteId],
+  });
+  return atendimento;
+}
 
 
 const getClientsServicesForTime = async (clienteId, startDate, endDate) => {
@@ -92,7 +73,7 @@ const servicesOnTime = async ( startDate, endDate) => {
       replacements: [startDate, endDate],
     })
   return atendimento;
-}
+};
 
 const getBalance = async (startDate, endDate) => {
   const query = fs.readFileSync('./src/Database/queries/balance.sql', 'utf8');
@@ -100,16 +81,32 @@ const getBalance = async (startDate, endDate) => {
       replacements: [startDate, endDate],
     })
   return balance;
-}
+};
 
+const registerCompleted = async ({logradouro, cliente, atendimento}) => {
+  const t = await  Models.sequelize.transaction();
+  try {
+    const {dataValues: { id: enderecoId, ...endereco }} = await addLogradouro(logradouro, t);
+    const {dataValues: { id: clienteId, endereço, ...novoCliente }} = await addUser({endereço: enderecoId, ...cliente}, t);
+    const {dataValues: {clienteId: userId, serviçoId, ...agenda }} = await addAtendimento({clienteId, ...atendimento}, t);
+    await t.commit();
+    return ({Cliente: {clienteId, novoCliente}, Agenda: agenda, Endereço: endereco});
+  } catch(e) {
+    console.log(e);
+    await t.rollback();
+    return ({ message: 'Erro ao registrar atendimento'});
+  }
+};
 
 module.exports = {
   addLogradouro,
   addUser,
   addService,
   addAtendimento,
-  getConfirmationCard,
+  getAllServiceClient,
   getClientsServicesForTime,
   servicesOnTime,
   getBalance,
+  getAttendenceConfirmation,
+  registerCompleted,
 };
