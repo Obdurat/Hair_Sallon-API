@@ -24,10 +24,10 @@ const patchUser = async (body) => {
   if (!user) throw new CustomError("Cliente não encontrado",404);
   const logradouro = await Models.logradouro.findOne({ where: { id: body.endereço } });
   if (body.logradouro) {
-    logradouro.patch(body.logradouro)
+    logradouro.update(body.logradouro)
     logradouro.save();
   }
-  await user.patch(body);
+  await user.update(body);
   await user.save();
   return ({cliente: user, logradouro: logradouro});
 };
