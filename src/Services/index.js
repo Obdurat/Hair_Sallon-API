@@ -1,32 +1,46 @@
 const Models = require("../Database/models");
 const fs = require('fs');
-
+const CustomError = require("../Errors/CustomError");
 
 const addLogradouro = async (body, t) => {
-  console.log(body);
   const newAdress = await Models.logradouro.build(body);
-  await newAdress.save({transaction: t});
+  await newAdress.save({ transaction: t });
   return newAdress;
 };
 
 const addUser = async (body, t) => {
-  console.log(body);
   const newUser = await Models.clientes.build(body);
-  await newUser.save({transaction: t});
+  await newUser.save({ transaction: t });
   return newUser;
 };
 
+const getAllUsers = async () => {
+  const allUsers = await Models.clientes.findAll({ include: [{ model: Models.logradouro, attributes: { exclude: ['id'] } }]});
+  return allUsers;
+};
+
+const patchUser = async (body) => {
+  const user = await Models.clientes.findOne({ where: { id: body.id } });
+  if (!user) throw new CustomError("Cliente não encontrado",404);
+  const logradouro = await Models.logradouro.findOne({ where: { id: body.endereço } });
+  if (body.logradouro) {
+    logradouro.patch(body.logradouro)
+    logradouro.save();
+  }
+  await user.patch(body);
+  await user.save();
+  return ({cliente: user, logradouro: logradouro});
+};
+
 const addService = async (body) => {
-  console.log(body);
   const newService = await Models.serviços.build(body);
   await newService.save();
   return newService;
 };
 
 const addAtendimento = async (body, t) => {
-  console.log(body);
   const newAtendimento = await Models.atendimentos.build(body);
-  await newAtendimento.save({transaction: t});
+  await newAtendimento.save({ transaction: t });
   return newAtendimento;
 };
 
@@ -90,11 +104,10 @@ const registerCompleted = async ({logradouro, cliente, atendimento}) => {
     const {dataValues: { id: clienteId, endereço, ...novoCliente }} = await addUser({endereço: enderecoId, ...cliente}, t);
     const {dataValues: {clienteId: userId, serviçoId, ...agenda }} = await addAtendimento({clienteId, ...atendimento}, t);
     await t.commit();
-    return ({Cliente: {clienteId, novoCliente}, Agenda: agenda, Endereço: endereco});
-  } catch(e) {
-    console.log(e);
-    await t.rollback();
-    return ({ message: 'Erro ao registrar atendimento'});
+    return ({ Cliente: { clienteId, novoCliente }, Agenda: agenda, Endereço: endereco });
+  } catch (e) {
+    await t.rollback();   
+    throw new CustomError('Erro ao criar agendamento', 400);
   }
 };
 
@@ -109,4 +122,6 @@ module.exports = {
   getBalance,
   getAttendenceConfirmation,
   registerCompleted,
+  getAllUsers,
+  patchUser
 };
