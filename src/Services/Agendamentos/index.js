@@ -8,9 +8,11 @@ const addAtendimento = async (body, t) => {
 };
 
 const deleteAtendimento = async (clienteId, serviceId) => {
+  // O QUE ACONTECE SE O CLIENTE TIVER DOIS AGENDAMENTOS PARA O MESMO SERVIÇO ????
   const atendimento = await Models.atendimentos.findOne({
     where: { clienteId, serviceId },
   });
+  console.log(atendimento);
   if (!atendimento) throw new CustomError("Atendimento não Encontrado", 404);
   atendimento.destroy();
   return atendimento;

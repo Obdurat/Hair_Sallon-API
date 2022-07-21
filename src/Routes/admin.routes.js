@@ -1,5 +1,7 @@
 const express = require("express");
 const Controllers = require("../Controllers");
+const Agendamentos = require("../Controllers/Agendamentos");
+
 const admin = express.Router();
 
 admin.route("/logradouro")
@@ -16,8 +18,8 @@ admin
   .get(Controllers.getAttendenceConfirmation);
 
 admin.route("/atendimento/:clienteId/:serviceId")
- .delete(Controllers.deleteAtendimento)
- .patch(Controllers.updateAtendimento);
+ .delete(Agendamentos.deleteAtendimento)
+ .patch(Agendamentos.updateAtendimento);
 
 admin.route("/atendimento/time")
   .get(Controllers.getClientsServicesForTime);

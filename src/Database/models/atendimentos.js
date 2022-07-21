@@ -46,9 +46,10 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.FLOAT,
       allowNull: false,
     },
-    criado: DataTypes.DATE,
-    atualizado: DataTypes.DATE,
-  }, 
+    criadoEm: DataTypes.DATE,
+    atualizadoEm: DataTypes.DATE,
+  },
+     
   { 
     createdAt: 'criadoEm',
     updatedAt: 'atualizadoEm',

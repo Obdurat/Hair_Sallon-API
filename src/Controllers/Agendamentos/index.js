@@ -9,6 +9,7 @@ const addAtendimento = controllerWrapper(async (req, res, next) => {
 
 const deleteAtendimento = controllerWrapper(async (req, res, next) => {
   const { clienteId, serviceId } = req.params;
+  console.log('apaguei bb')
   const agendamento = await Agendamentos.deleteAtendimento(clienteId, serviceId);
   return res.status(200).json(agendamento);
 });
