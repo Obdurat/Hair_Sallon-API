@@ -15,6 +15,10 @@ admin
   .post(Controllers.addAtendimento)
   .get(Controllers.getAttendenceConfirmation);
 
+admin.route("/atendimento/:clienteId/:serviceId")
+ .delete(Controllers.deleteAtendimento)
+ .patch(Controllers.updateAtendimento);
+
 admin.route("/atendimento/time")
   .get(Controllers.getClientsServicesForTime);
 
@@ -23,6 +27,10 @@ admin.route("/atendimento/cliente")
 
 admin.route("/servico")
   .post(Controllers.addService);
+
+admin.route("/servico/:id")
+  .patch(Controllers.patchService)
+  .delete(Controllers.deleteService);
 
 admin.route("/financeiro")
   .get(Controllers.getBalance);

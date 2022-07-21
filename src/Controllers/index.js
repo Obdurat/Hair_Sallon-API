@@ -84,6 +84,30 @@ const patchUser = controllerWrapper(async (req, res, next) => {
   return res.status(200).json(user);
 });
 
+const patchService = controllerWrapper(async (req, res, next) => {
+  const { id } = req.params;
+  const service = await Services.patchService(req.body, id);
+  return res.status(200).json(service);
+});
+
+const deleteService = controllerWrapper(async (req, res, next) => {
+  const { id } = req.params;
+  const service = await Services.deleteService(id);
+  return res.status(200).json(service);
+});
+
+const deleteAtendimento = controllerWrapper(async (req, res, next) => {
+  const { clienteId, serviceId } = req.params;
+  const agendamento = await Services.deleteAtendimento(clienteId, serviceId);
+  return res.status(200).json(agendamento);
+});
+
+const updateAtendimento = controllerWrapper(async (req, res, next) => {
+  const { clienteId, serviceId } = req.params;
+  const agendamento = await Services.updateAtendimento(clienteId, serviceId);
+  return res.status(200).json(agendamento);
+});
+
 module.exports = {
   addLogradouro,
   addUser,
@@ -96,5 +120,9 @@ module.exports = {
   getAttendenceConfirmation,
   registerCompleted,
   getAllUsers,
-  patchUser
+  patchUser,
+  patchService,
+  deleteService,
+  deleteAtendimento,
+  updateAtendimento
 };

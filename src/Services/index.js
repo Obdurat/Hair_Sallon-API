@@ -38,10 +38,38 @@ const addService = async (body) => {
   return newService;
 };
 
+const patchService = async (body, param) => {
+  const service = await Models.serviços.findOne({ where: { id: param }});
+  if (!service) throw new CustomError("Serviço não encontrado", 404);
+  await service.update(body);
+  return service;
+};
+
+const deleteService = async (param) => {
+  const service = await Models.serviços.findOne({ where: { id: param }});
+  if (!service) throw new CustomError("Serviço não encontrado", 404);
+  await service.destroy();
+  return ({ serviço: param, status: "excluido" });
+};
+
 const addAtendimento = async (body, t) => {
   const newAtendimento = await Models.atendimentos.build(body);
   await newAtendimento.save({ transaction: t });
   return newAtendimento;
+};
+
+const deleteAtendimento = async (clienteId, serviceId) => {
+  const atendimento = await Models.atendimentos.findOne({ where: { clienteId, serviceId } });
+  if (!atendimento) throw new CustomError("Atendimento não Encontrado", 404);
+  atendimento.destroy();
+  return atendimento;
+};
+
+const updateAtendimento = async (body, clienteId, serviceId) => {
+  const atendimento = await Models.atendimentos.findOne({ where: { clienteId, serviceId } });
+  if (!atendimento) throw new CustomError("Atendimento não Encontrado", 404);
+  await atendimento.update(body);
+  return atendimento;
 };
 
 const getAllServiceClient = async (clienteId) => {
@@ -123,5 +151,9 @@ module.exports = {
   getAttendenceConfirmation,
   registerCompleted,
   getAllUsers,
-  patchUser
+  patchUser,
+  patchService,
+  deleteService,
+  deleteAtendimento,
+  updateAtendimento
 };
