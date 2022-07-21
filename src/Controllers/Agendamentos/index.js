@@ -9,14 +9,14 @@ const addAtendimento = controllerWrapper(async (req, res, next) => {
 
 const deleteAtendimento = controllerWrapper(async (req, res, next) => {
   const { clienteId, serviceId } = req.params;
-  console.log('apaguei bb')
   const agendamento = await Agendamentos.deleteAtendimento(clienteId, serviceId);
   return res.status(200).json(agendamento);
 });
 
 const updateAtendimento = controllerWrapper(async (req, res, next) => {
   const { clienteId, serviceId } = req.params;
-  const agendamento = await Agendamentos.updateAtendimento(clienteId, serviceId);
+  console.log('entrou no updateAtendimento', req.body, clienteId, serviceId);
+  const agendamento = await Agendamentos.updateAtendimento(req.body, clienteId, serviceId);
   return res.status(200).json(agendamento);
 });
 
