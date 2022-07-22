@@ -10,4 +10,4 @@ app.use('/admin', admin);
 app.use('/cliente', cliente);
 app.use(ErrorHandler);
 
-app.listen(3000, () => console.log('listening on port 3000'));
+app.listen(process.env.PORT, () => console.log(process.env.PORT, 'listening on port 3000'));
