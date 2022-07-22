@@ -7,7 +7,7 @@ cliente.route("/logradouro").post(Controllers.addLogradouro);
 
 cliente.route("/").post(Controllers.addUser);
 
-cliente.route('/new').post(Controllers.registerCompleted);
+cliente.route('/novo').post(Controllers.registerCompleted);
 
 cliente.route("/atendimento").post(Agendamentos.addAtendimento)
   .get(Controllers.getAttendenceConfirmation);

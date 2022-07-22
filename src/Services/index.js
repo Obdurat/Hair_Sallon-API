@@ -127,6 +127,7 @@ const getBalance = async (startDate, endDate) => {
 };
 
 const registerCompleted = async ({logradouro, cliente, atendimento}) => {
+  // É POSSÍVEL SABER EM QUAL TRANSACTION DEU ERRO ?
   const t = await  Models.sequelize.transaction();
   try {
     const {dataValues: { id: enderecoId, ...endereco }} = await addLogradouro(logradouro, t);

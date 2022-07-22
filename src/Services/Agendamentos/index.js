@@ -9,6 +9,7 @@ const addAtendimento = async (body, t) => {
 
 const deleteAtendimento = async (clienteId, serviçoId) => {
   // O QUE ACONTECE SE O CLIENTE TIVER DOIS AGENDAMENTOS PARA O MESMO SERVIÇO ????
+  // EDITAR PARA RETORNAR O NOME DO SERVIÇ QUE FOI DELETADO
   const atendimento = await Models.atendimentos.findOne({
     where: { clienteId, serviçoId },
   });
