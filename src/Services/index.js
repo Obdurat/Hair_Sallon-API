@@ -59,15 +59,15 @@ const addAtendimento = async (body, t) => {
   return newAtendimento;
 };
 
-const deleteAtendimento = async (clienteId, serviceId) => {
-  const atendimento = await Models.atendimentos.findOne({ where: { clienteId, serviceId } });
+const deleteAtendimento = async (atendimentoId) => {
+  const atendimento = await Models.atendimentos.findOne({ where: { id: atendimentoId } });
   if (!atendimento) throw new CustomError("Atendimento não Encontrado", 404);
   atendimento.destroy();
   return atendimento;
 };
 
-const updateAtendimento = async (body, clienteId, serviceId) => {
-  const atendimento = await Models.atendimentos.findOne({ where: { clienteId, serviceId } });
+const updateAtendimento = async (id, body) => {
+  const atendimento = await Models.atendimentos.findOne({ where: { id } });
   if (!atendimento) throw new CustomError("Atendimento não Encontrado", 404);
   await atendimento.update(body);
   return atendimento;

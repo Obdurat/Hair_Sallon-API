@@ -17,7 +17,7 @@ admin
   .post(Controllers.addAtendimento)
   .get(Controllers.getAttendenceConfirmation);
 
-admin.route("/atendimento/:clienteId/:serviceId")
+admin.route("/atendimento/:atendimentoId")
  .delete(Agendamentos.deleteAtendimento)
  .patch(Agendamentos.updateAtendimento);
 

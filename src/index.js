@@ -5,7 +5,7 @@ const cliente = require('./Routes/cliente.routes');
 const ErrorHandler = require('../src/Middleware/ErrorHandler');
 
 const app = express();
-app.use('/', express.static('./view'));
+app.use(express.static('./view'));
 app.use(express.json());
 app.use('/admin', admin);
 app.use('/cliente', cliente);

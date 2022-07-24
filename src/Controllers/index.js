@@ -97,14 +97,14 @@ const deleteService = controllerWrapper(async (req, res, next) => {
 });
 
 const deleteAtendimento = controllerWrapper(async (req, res, next) => {
-  const { clienteId, serviceId } = req.params;
-  const agendamento = await Services.deleteAtendimento(clienteId, serviceId);
+  const { atendimentoId } = req.params;
+  const agendamento = await Services.deleteAtendimento(atendimentoId);
   return res.status(200).json(agendamento);
 });
 
 const updateAtendimento = controllerWrapper(async (req, res, next) => {
-  const { clienteId, serviceId } = req.params;
-  const agendamento = await Services.updateAtendimento(clienteId, serviceId);
+  const { atendimentoId } = req.params;
+  const agendamento = await Services.updateAtendimento(atendimentoId, req.body);
   return res.status(200).json(agendamento);
 });
 
