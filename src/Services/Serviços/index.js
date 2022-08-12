@@ -30,9 +30,15 @@ const servicesOnTime = async ( startDate, endDate) => {
   return atendimento;
 };
 
+const getAllServices = async () => {
+  const services = await Models.serviços.findAll();
+  return services;
+};
+
 module.exports = {
   addService, // Serviços
   patchService, // Serviços
   deleteService, // Serviços
   servicesOnTime, // Serviços
+  getAllServices, // Serviços
 };

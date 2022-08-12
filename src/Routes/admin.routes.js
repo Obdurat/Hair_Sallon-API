@@ -1,46 +1,47 @@
-const express = require("express");
-// const Controllers = require("../Controllers");
-const Agendamentos = require("../Controllers/Agendamentos");
-const Clientes = require("../Controllers/Clientes");
-const Serviços = require("../Controllers/Serviços");
+const express = require('express');
+const Agendamentos = require('../Controllers/Agendamentos');
+const Clientes = require('../Controllers/Clientes');
+const Serviços = require('../Controllers/Serviços');
 
 
 
 const admin = express.Router();
-admin.route("/logradouro")
+admin.route('/logradouro')
   .post(Clientes.addLogradouro);
 
-admin.route("/cliente")
+admin.route('/cliente')
   .post(Clientes.addUser)
   .get(Clientes.getAllUsers)
   .patch(Clientes.patchUser);
 
 admin
-  .route("/atendimento")
+  .route('/atendimento')
   .post(Agendamentos.addAtendimento)
   .get(Clientes.getAttendenceConfirmation);
 
-admin.route("/atendimento/:atendimentoId")
+admin.route('/atendimento/:atendimentoId')
  .delete(Agendamentos.deleteAtendimento)
  .patch(Agendamentos.updateAtendimento);
 
-admin.route("/atendimento/time")
+admin.route('/atendimento/time')
   .get(Clientes.getClientsServicesForTime);
 
-admin.route("/atendimento/cliente")
+admin.route('/atendimento/cliente')
   .get(Clientes.getAllServiceClient);
 
-admin.route("/servico")
+admin.route('/servico')
   .post(Serviços.addService);
 
-admin.route("/servico/:id")
+admin.route('/servico/:id')
   .patch(Serviços.patchService)
   .delete(Serviços.deleteService);
 
-// admin.route("/financeiro")
+// admin.route('/financeiro')
 //   .get(Controllers.getBalance);
 
-admin.route("/financeiro/time")
+admin.route('/financeiro/time')
   .get(Serviços.servicesOnTime);
+
+admin.route('/servicos').get(Serviços.getAllServices);
 
 module.exports = admin;

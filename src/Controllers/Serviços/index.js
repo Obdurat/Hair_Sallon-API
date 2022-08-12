@@ -28,9 +28,15 @@ const deleteService = controllerWrapper(async (req, res, next) => {
   return res.status(200).json(service);
 });
 
+const getAllServices = controllerWrapper(async (req, res) => {
+  const services = await Serviços.getAllServices();
+  return res.status(200).json(services);
+});
+
 module.exports = {
   addService,
   servicesOnTime,
   patchService,
   deleteService,
+  getAllServices,
 };
