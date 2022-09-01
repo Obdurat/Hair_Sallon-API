@@ -8,4 +8,6 @@ const clientSchema = new Schema<IClient>({
   schedules: Array,
 });
 
-export default model<IClient>('Client', clientSchema);
+const Client = model<IClient>('Client', clientSchema);
+
+export default Client;

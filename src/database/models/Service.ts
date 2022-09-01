@@ -7,4 +7,6 @@ const serviceSchema = new Schema<IService>({
   duration: { type: Number, required: true },
 });
 
-export default model<IService>('Service', serviceSchema);
+const Service = model<IService>('Service', serviceSchema);
+
+export default Service;
