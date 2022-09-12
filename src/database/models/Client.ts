@@ -1,11 +1,11 @@
 import { Schema, model } from 'mongoose';
-import { IClient } from './interfaces';
+import { IClient, IScheduling } from './interfaces';
 
 const clientSchema = new Schema<IClient>({
-  clientName: { type: String, required: true },
-  address: { type: String, required: true },
-  phone: { type: String, required: true },
-  schedules: Array,
+  clientName: String,
+  address: String,
+  phone: String,
+  schedules: Array<IScheduling>,
 });
 
 const Client = model<IClient>('Client', clientSchema);
