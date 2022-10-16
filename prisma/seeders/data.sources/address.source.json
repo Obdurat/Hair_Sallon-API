@@ -1,0 +1,52 @@
+[
+    {
+        "street": "Hermina Greens Suite",
+        "city": "Anchorage",
+        "cep": "29318-756"
+    },
+    {
+        "street": "Primeiro de Maio",
+        "city": "Serra",
+        "cep": "29225-449"
+    },
+    {
+        "street": "Santa Luzia",
+        "city": "Mossoró",
+        "cep": "49515-235"
+    },
+    {
+        "street": "Projetada",
+        "city": "Balneário Camboriú",
+        "cep": "26171-699"
+    },
+    {
+        "street": "Dezesseis",
+        "city": "Embu das Artes",
+        "cep": "78292-128"
+    },
+    {
+        "street": "Santo Antônio",
+        "city": "Itapipoca",
+        "cep": "66357-425"
+    },
+    {
+        "street": "Projetada",
+        "city": "Vitória",
+        "cep": "78151-859"
+    },
+    {
+        "street": "Vinte",
+        "city": "Nossa Senhora do Socorro",
+        "cep": "65969-025"
+    },
+    {
+        "street": "Duque de Caxias",
+        "city": "Arapiraca",
+        "cep": "49713-468"
+    },
+    {
+        "street": "Sergipe",
+        "city": "Itumbiara",
+        "cep": "79250-938"
+    }
+]

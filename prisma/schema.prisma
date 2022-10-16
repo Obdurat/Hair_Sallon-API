@@ -10,12 +10,22 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+model Address {
+  id String @id @default(uuid())
+  city String
+  street String
+  cep String @unique
+  users User[]
+}
 model User {
   id String @id @default(uuid())
   name String
   phone String @unique
   role Role @default(client)
-  address String @db.VarChar(255)
+  address Address @relation(fields: [location], references: [id])
+  location String
+  address_number Int
+  address_complement String
   schedules Schedules[]
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt
