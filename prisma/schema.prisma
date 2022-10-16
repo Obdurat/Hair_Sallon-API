@@ -35,7 +35,6 @@ model Services {
   id String @id @default(uuid())
   name String @db.VarChar(255)
   duration String @db.VarChar(255)
-  price Float?
   Schedules Schedules[]
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt
@@ -47,6 +46,7 @@ model Schedules {
   client_id String
   service Services @relation(fields: [service_id], references: [id])
   service_id String
+  price Float?
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt
 }
