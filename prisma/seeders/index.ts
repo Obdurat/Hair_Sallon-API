@@ -7,7 +7,7 @@ import schedulesSource from './data.sources/schedules.source.json';
 
 const prisma = new PrismaClient();
 
-const schedulesSeeder = async () => {
+const Seeder = async () => {
   for (let i = 0; i < schedulesSource.length; i += 1) {
     await prisma.schedules.create({
       data: {
@@ -20,7 +20,7 @@ const schedulesSeeder = async () => {
   return 'Entries created successfully';
 };
 
-schedulesSeeder()
-  .then((result) => console.log(result))
-  .catch((err) => console.log(err))
+Seeder()
+  .then((result) => console.log(`\n${result}`))
+  .catch((err) => console.log(`\n${err}`))
   .finally(() => prisma.$disconnect());
