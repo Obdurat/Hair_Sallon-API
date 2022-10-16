@@ -9,3 +9,39 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+model User {
+  id String @id @default(uuid())
+  name String
+  phone String @unique
+  role Role @default(client)
+  address String @db.VarChar(255)
+  schedules Schedules[]
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+}
+
+model Services {
+  id String @id @default(uuid())
+  name String @db.VarChar(255)
+  duration String @db.VarChar(255)
+  price Float?
+  Schedules Schedules[]
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+}
+
+model Schedules {
+  id String @id @default(uuid())
+  client User @relation(fields: [client_id], references: [id])
+  client_id String
+  service Services @relation(fields: [service_id], references: [id])
+  service_id String
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+}
+
+enum Role {
+  client
+  admin
+}
