@@ -6,9 +6,9 @@ export default class AddressRepository implements IAddressRepository {
 
   public create = async (data: Prisma.AddressCreateInput) => this._addressSchema.create({ data: { ...data } });
 
-  public getAll = async (where: Prisma.AddressWhereInput) => this._addressSchema.findMany({ where });
+  public getAll = async (where: Prisma.AddressWhereInput, include?: Prisma.AddressInclude) => this._addressSchema.findMany({ where, include });
 
-  public getOne = async (where: Prisma.AddressWhereUniqueInput) => this._addressSchema.findUnique({ where });
+  public getOne = async (where: Prisma.AddressWhereUniqueInput, include?: Prisma.AddressInclude) => this._addressSchema.findUnique({ where, include });
 
   public updateOne = async (where: Prisma.AddressWhereUniqueInput, data: Partial<Prisma.AddressCreateInput>) => this._addressSchema.update({ where, data });
 

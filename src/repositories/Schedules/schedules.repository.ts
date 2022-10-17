@@ -6,9 +6,9 @@ export default class SchedulesRepository implements ISchedulesRepository {
 
   public create = async (data: Prisma.SchedulesCreateInput) => this._schedulesSchema.create({ data: { ...data } });
 
-  public getAll = async (where: Prisma.SchedulesWhereInput) => this._schedulesSchema.findMany({ where });
+  public getAll = async (where: Prisma.SchedulesWhereInput, include?: Prisma.SchedulesInclude) => this._schedulesSchema.findMany({ where, include });
 
-  public getOne = async (where: Prisma.SchedulesWhereUniqueInput) => this._schedulesSchema.findUnique({ where });
+  public getOne = async (where: Prisma.SchedulesWhereUniqueInput, include?: Prisma.SchedulesInclude) => this._schedulesSchema.findUnique({ where, include });
 
   public updateOne = async (where: Prisma.SchedulesWhereUniqueInput, data: Partial<Prisma.SchedulesCreateInput>) => this._schedulesSchema.update({ where, data });
 
