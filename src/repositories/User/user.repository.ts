@@ -1,9 +1,7 @@
-import { Prisma, User } from '@prisma/client';
-import IRepository from '../../interfaces/repositories/repository.interface';
+import { Prisma } from '@prisma/client';
+import { IUserRepository, PrismaUserMethods } from './@types';
 
-type PrismaUserMethods = Prisma.UserDelegate<Prisma.RejectOnNotFound | Prisma.RejectPerOperation>;
-
-export default class UserRepository implements IRepository<Prisma.UserCreateInput, Prisma.UserWhereUniqueInput, Prisma.UserWhereInput, User> {
+export default class UserRepository implements IUserRepository {
   constructor(private _userSchema: PrismaUserMethods) { }
 
   public create = async (data: Prisma.UserCreateInput) => this._userSchema.create({ data: { ...data } });
