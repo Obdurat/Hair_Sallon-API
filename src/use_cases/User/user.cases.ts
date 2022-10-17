@@ -1,5 +1,5 @@
 import { Prisma, User } from '@prisma/client';
-import IUserRepository from '../../repositories/User/user.repository';
+import IUserRepository, { userRepository } from '../../repositories/User/user.repository';
 import { IUserUseCases } from './@types';
 
 export default class UserCase implements IUserUseCases {
@@ -30,3 +30,5 @@ export default class UserCase implements IUserUseCases {
     return request;
   };
 }
+
+export const userCases = new UserCase(userRepository);
