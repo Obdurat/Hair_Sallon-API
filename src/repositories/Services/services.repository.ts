@@ -6,7 +6,7 @@ export default class ServicesRepository implements IServicesRepository {
 
   public create = async (data: Prisma.ServicesCreateInput) => this._servicesSchema.create({ data: { ...data } });
 
-  public getAll = async (where: Prisma.ServicesWhereInput) => this._servicesSchema.findMany({ where, include: { } });
+  public getAll = async (where: Prisma.ServicesWhereInput) => this._servicesSchema.findMany({ where });
 
   public getOne = async (where: Prisma.ServicesWhereUniqueInput) => this._servicesSchema.findUnique({ where });
 

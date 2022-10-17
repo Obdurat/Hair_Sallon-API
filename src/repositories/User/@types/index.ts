@@ -3,4 +3,4 @@ import IRepository from '../../../interfaces/repositories/repository.interface';
 
 export type PrismaUserMethods = Prisma.UserDelegate<Prisma.RejectOnNotFound | Prisma.RejectPerOperation>;
 
-export type IUserRepository = IRepository<Prisma.UserCreateInput, Prisma.UserWhereUniqueInput, Prisma.UserWhereInput, User>;
+export type IUserRepository = IRepository<Prisma.UserCreateInput, Prisma.UserWhereUniqueInput, Prisma.UserWhereInput, User, Prisma.UserInclude>;
