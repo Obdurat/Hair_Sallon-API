@@ -26,7 +26,7 @@ export default class UserController {
   };
 
   public deleteOne = async (req: Request, res: Response): Promise<Response> => {
-    const request = await this.useCase.deleteOneCase(req.query);
+    const request = await this.useCase.deleteOneCase(req.params);
     return res.status(200).json(request);
   };
 }

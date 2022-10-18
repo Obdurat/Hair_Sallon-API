@@ -18,7 +18,6 @@ export default class UserRepository implements IUserRepository {
   public getOne = async (where: Prisma.UserWhereUniqueInput, include?: Prisma.UserInclude) => {
     const query = { where, include };
     if (JSON.stringify(query.include) === '{}') { delete query.include; }
-    console.log(query);
     if (query.include?.address === '') { query.include.address = addressSelector; }
     if (query.include?.schedules === '') { query.include.schedules = schedulesSelector; }
     return this._userSchema.findUnique(query);
