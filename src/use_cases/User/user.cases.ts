@@ -1,9 +1,9 @@
 import { Prisma, User } from '@prisma/client';
-import IUserRepository, { userRepository } from '../../repositories/User/user.repository';
+import UserRepository, { userRepository } from '../../repositories/User/user.repository';
 import { IUserUseCases } from './@types';
 
 export default class UserCase implements IUserUseCases {
-  constructor(private repository: IUserRepository) { }
+  constructor(private repository: UserRepository) { }
 
   public createCase = async (data: Prisma.UserCreateInput): Promise<User> => {
     const request = await this.repository.create(data);

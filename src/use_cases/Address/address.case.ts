@@ -1,5 +1,5 @@
 import { Prisma, Address } from '@prisma/client';
-import IAddressRepository from '../../repositories/Address/address.repository';
+import IAddressRepository, { addressRepo } from '../../repositories/Address/address.repository';
 import { IAddressUseCases } from './@types';
 
 export default class AddressCase implements IAddressUseCases {
@@ -30,3 +30,5 @@ export default class AddressCase implements IAddressUseCases {
     return request;
   };
 }
+
+export const addressCase = new AddressCase(addressRepo);

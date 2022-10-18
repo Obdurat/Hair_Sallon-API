@@ -1,4 +1,4 @@
-import { Prisma } from '@prisma/client';
+import { Prisma, PrismaClient } from '@prisma/client';
 import { IAddressRepository, PrismaAddressMethods } from './@types';
 
 export default class AddressRepository implements IAddressRepository {
@@ -6,11 +6,21 @@ export default class AddressRepository implements IAddressRepository {
 
   public create = async (data: Prisma.AddressCreateInput) => this._addressSchema.create({ data: { ...data } });
 
-  public getAll = async (where: Prisma.AddressWhereInput, include?: Prisma.AddressInclude) => this._addressSchema.findMany({ where, include });
+  public getAll = async (where: Prisma.AddressWhereInput, include?: Prisma.AddressInclude) => {
+    const query = { where, include };
+    if (JSON.stringify(query.include) === '{}') { delete query.include; }
+    return this._addressSchema.findMany(query);
+  };
 
-  public getOne = async (where: Prisma.AddressWhereUniqueInput, include?: Prisma.AddressInclude) => this._addressSchema.findUnique({ where, include });
+  public getOne = async (where: Prisma.AddressWhereUniqueInput, include?: Prisma.AddressInclude) => {
+    const query = { where, include };
+    if (JSON.stringify(query.include) === '{}') { delete query.include; }
+    return this._addressSchema.findUnique(query);
+  };
 
   public updateOne = async (where: Prisma.AddressWhereUniqueInput, data: Partial<Prisma.AddressCreateInput>) => this._addressSchema.update({ where, data });
 
   public deleteOne = async (where: Prisma.AddressWhereUniqueInput) => this._addressSchema.delete({ where });
 }
+
+export const addressRepo = new AddressRepository(new PrismaClient().address);

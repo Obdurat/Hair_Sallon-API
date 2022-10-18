@@ -14,7 +14,7 @@ export type IncludeUnion = Prisma.UserInclude | Prisma.AddressInclude | Prisma.S
 
 export default interface IUseCases<T extends DataUnion, E extends WhereUniqueUnion, U extends WhereUnion, R extends ReturnUnion, I extends IncludeUnion> {
   createCase(data: T): Promise<R>
-  getAllCase(where: U, include?: I): Promise<Array<ReturnUnion>>
+  getAllCase(where: U, include?: I): Promise<Array<R>>
   getOneCase(where: E, include?: I): Promise<R | null>
   updateOneCase(where: E, data: Partial<T>): Promise<R | null>
   deleteOneCase(where: E): Promise<R | null>
