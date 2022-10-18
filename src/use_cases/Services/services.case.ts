@@ -1,5 +1,5 @@
 import { Prisma, Services } from '@prisma/client';
-import IServicesRepository from '../../repositories/Services/services.repository';
+import IServicesRepository, { servicesRepo } from '../../repositories/Services/services.repository';
 import { IServicesUseCases } from './@types';
 
 export default class ServicesCase implements IServicesUseCases {
@@ -30,3 +30,5 @@ export default class ServicesCase implements IServicesUseCases {
     return request;
   };
 }
+
+export const servicesCase = new ServicesCase(servicesRepo);

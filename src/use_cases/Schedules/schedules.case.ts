@@ -1,5 +1,5 @@
 import { Prisma, Schedules } from '@prisma/client';
-import ISchedulesRepository from '../../repositories/Schedules/schedules.repository';
+import ISchedulesRepository, { schedulesRepo } from '../../repositories/Schedules/schedules.repository';
 import { ISchedulesUseCases } from './@types';
 
 export default class SchedulesCase implements ISchedulesUseCases {
@@ -30,3 +30,5 @@ export default class SchedulesCase implements ISchedulesUseCases {
     return request;
   };
 }
+
+export const schedulesCase = new SchedulesCase(schedulesRepo);
