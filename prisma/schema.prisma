@@ -36,6 +36,7 @@ model Services {
   name String @db.VarChar(255)
   duration String @db.VarChar(255)
   Schedules Schedules[]
+  min_price Float?
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt
 }

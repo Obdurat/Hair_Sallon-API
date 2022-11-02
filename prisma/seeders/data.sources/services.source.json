@@ -1,42 +1,52 @@
 [
-    {
-      "name": "Escova Progressiva",
-      "duration": "2 horas" 
-    }, 
-    {
-      "name": "Corte",
-      "duration": "2 horas"
-    }, 
-    {
-      "name": "Corte Feminino",
-      "duration": "2 horas"
-    }, 
-    {
-      "name": "Corte Masculino",
-      "duration": "2 horas"
-    }, 
-    {
-      "name": "Escova Permanente",
-      "duration": "2 horas"
-    }, 
-    {
-      "name": "Escova",
-      "duration": "2 horas"
-    }, 
-    {
-      "name": "Chapinha",
-      "duration": "2 horas"
-    }, 
-    {
-      "name": "Luzes",
-      "duration": "2 horas"
-    }, 
-    {
-      "name": "Pontas",
-      "duration": "2 horas"
-    }, 
-    {
-      "name": "Mega Hair",
-      "duration": "2 horas"
-    }
-  ]
+  {
+    "name": "Escova Progressiva",
+    "duration": "2 horas",
+    "min_price": 100
+  },
+  {
+    "name": "Corte",
+    "duration": "2 horas",
+    "min_price": 50
+  },
+  {
+    "name": "Corte Feminino",
+    "duration": "2 horas",
+    "min_price": 150
+  },
+  {
+    "name": "Corte Masculino",
+    "duration": "2 horas",
+    "min_price": 40
+  },
+  {
+    "name": "Escova Permanente",
+    "duration": "2 horas",
+    "min_price": 100
+  },
+  {
+    "name": "Escova",
+    "duration": "2 horas",
+    "min_price": 95.99
+  },
+  {
+    "name": "Chapinha",
+    "duration": "2 horas",
+    "min_price": 140.5
+  },
+  {
+    "name": "Luzes",
+    "duration": "2 horas",
+    "min_price": 200
+  },
+  {
+    "name": "Pontas",
+    "duration": "2 horas",
+    "min_price": 150
+  },
+  {
+    "name": "Mega Hair",
+    "duration": "2 horas",
+    "min_price": 350.99
+  }
+]
