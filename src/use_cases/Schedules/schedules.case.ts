@@ -1,12 +1,26 @@
 import { Prisma, Schedules } from '@prisma/client';
+import { ISchedule, ScheduleZodSchema } from '../../DTO/ISchedule';
 import ISchedulesRepository, { schedulesRepo } from '../../repositories/Schedules/schedules.repository';
 import { ISchedulesUseCases } from './@types';
+import PrismaScheduleAdapter from '../../utils/adapter/prisma/serialize';
+import EntitiesValidator from '../Validator/EntitiesValidator';
 
 export default class SchedulesCase implements ISchedulesUseCases {
-  constructor(private repository: ISchedulesRepository) { }
+  constructor(
+    private repository: ISchedulesRepository,
+    private adapter: PrismaScheduleAdapter,
+    private validator: EntitiesValidator<ISchedule>,
+  ) { }
 
-  public createCase = async (data: Prisma.SchedulesCreateInput): Promise<Schedules> => {
-    const request = await this.repository.create(data);
+  public createCase = async (data: ISchedule): Promise<Schedules> => {
+    console.log('create case');
+    this.validator.create({ ...data });
+    console.log('fiz validação');
+    const schedule = this.adapter.serialize(data);
+    console.log('fiz serialize', schedule);
+
+    const request = await this.repository.create(schedule);
+    console.log('criei');
     return request;
   };
 
@@ -31,4 +45,8 @@ export default class SchedulesCase implements ISchedulesUseCases {
   };
 }
 
-export const schedulesCase = new SchedulesCase(schedulesRepo);
+export const schedulesCase = new SchedulesCase(
+  schedulesRepo,
+  new PrismaScheduleAdapter(),
+  new EntitiesValidator<ISchedule>(ScheduleZodSchema),
+);
