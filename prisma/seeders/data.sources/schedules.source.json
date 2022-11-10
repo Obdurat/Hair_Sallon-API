@@ -1,32 +1,52 @@
 [
-    {
-      "price": 50.4
-    }, 
-    {
-      "price": 30.8
-    }, 
-    {
-      "price": 90.6
-    }, 
-    {
-      "price": 100.3
-    }, 
-    { 
-      "price": 70.5
-    }, 
-    {
-      "price": 60.1
-    }, 
-    {
-      "price": 44.4
-    }, 
-    { 
-      "price": 88.6
-    }, 
-    {
-      "price": 63.7
-    }, 
-    { 
-      "price": 72.9
-    }
-  ]
+  {
+    "price": 50.4,
+    "date":  "2019-01-01",
+    "finished": true
+  },
+  {
+    "price": 30.8,
+    "date": "2019-01-02",
+    "finished": false
+  },
+  {
+    "price": 90.6,
+    "date": "2019-01-03",
+    "finished": true
+  },
+  {
+    "price": 100.3,
+    "date": "2019-01-04",
+    "finished": false
+  },
+  {
+    "price": 70.5,
+    "date": "2019-01-05",
+    "finished": true
+  },
+  {
+    "price": 60.1,
+    "date": "2019-01-06",
+    "finished": false
+  },
+  {
+    "price": 44,
+    "date": "2019-01-07",
+    "finished": true
+  },
+  {
+    "price": 88.6,
+    "date": "2019-01-08",
+    "finished": true
+  },
+  {
+    "price": 63.7,
+    "date": "2019-01-09",
+    "finished": true
+  },
+  {
+    "price": 72.9,
+    "date": "2019-01-10",
+    "finished": true
+  }
+]

@@ -12,6 +12,8 @@ const Seeder = async () => {
     await prisma.schedules.create({
       data: {
         price: schedulesSource[i].price,
+        date: new Date(schedulesSource[i].date),
+        finished: schedulesSource[i].finished,
         client: { create: { ...usersSource[i], address: { create: { ...addressSource[i] } } } },
         service: { create: { ...serviceSource[i] } },
       },
