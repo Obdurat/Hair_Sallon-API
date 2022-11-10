@@ -5,7 +5,7 @@ export default class PrismaScheduleAdapter {
   public serialize = (data: ISchedule): Prisma.SchedulesCreateInput => {
     const schedule = {
       price: data.price,
-      date: data.date,
+      date: new Date(data.date),
       finished: data.finished,
       client: {
         connectOrCreate: {
