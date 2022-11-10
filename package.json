@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "db:reset": "npx prisma db push --force-reset && ts-node prisma/seeders/index.ts",
+    "db:reset": "npx prisma db push && ts-node prisma/seeders/index.ts",
     "start": "npm run build && node build/index.js",
     "start:dev": "nodemon",
     "build": "rimraf ./build && tsc",
